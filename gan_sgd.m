@@ -61,7 +61,7 @@ function output = relu(x)
     output = max(x, 0);
 end
 % relu对x的导数
-function output = detal_relu(x)
+function output = delta_relu(x)
     output = max(x,0);
     output(output>0) = 1;
 end
@@ -72,7 +72,7 @@ function result = sigmoid_cross_entropy(logits, labels)
     result = mean(result);
 end
 % sigmoid_cross_entropy对logits的导数，此处的logits是未经过sigmoid激活的
-function result = detal_sigmoid_cross_entropy(logits, labels)
+function result = delta_sigmoid_cross_entropy(logits, labels)
     temp1 = max(logits, 0);
     temp1(temp1>0) = 1;
     temp2 = logits;
@@ -112,13 +112,13 @@ function nn = nnbp_d(nn, y_h, y)
     % d表示残差，残差就是最终的loss对各层未激活值（z）的偏导，偏导数的计算需要采用链式求导法则-自己手动推出来
     n = nn.layers_count;
     % 最后一层的残差
-    nn.layers{n}.d = detal_sigmoid_cross_entropy(y_h, y);
+    nn.layers{n}.d = delta_sigmoid_cross_entropy(y_h, y);
     for i = n-1:-1:2
         d = nn.layers{i+1}.d;
         w = nn.layers{i+1}.w;
         z = nn.layers{i}.z;
         % 每一层的残差是对每一层的未激活值求偏导数，所以是后一层的残差乘上w,再乘上对激活值对未激活值的偏导数
-        nn.layers{i}.d = d*w' .* detal_relu(z);    
+        nn.layers{i}.d = d*w' .* delta_relu(z);    
     end
     % 求出各层的残差之后，就可以根据残差求出最终loss对weights和biases的偏导数
     for i = 2:n
@@ -142,7 +142,7 @@ function g_net = nnbp_g(g_net, d_net)
         w = g_net.layers{i+1}.w;
         z = g_net.layers{i}.z;
         % 每一层的残差是对每一层的未激活值求偏导数，所以是后一层的残差乘上w,再乘上对激活值对未激活值的偏导数
-        g_net.layers{i}.d = d*w' .* detal_relu(z);    
+        g_net.layers{i}.d = d*w' .* delta_relu(z);    
     end
     % 求出各层的残差之后，就可以根据残差求出最终loss对weights和biases的偏导数
     for i = 2:n
