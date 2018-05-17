@@ -8,12 +8,16 @@
 <p align="center">
   <img src="https://github.com/JZhaoCH/Simple-GAN-Base-on-Matlab/blob/master/readme%20images/5.png"/>
 </p>
+
 * generator + discriminator
 <p align="center">
   <img src="https://github.com/JZhaoCH/Simple-GAN-Base-on-Matlab/blob/master/readme%20images/6.png"/>
 </p>
+
 ## 代码
+
 * gan_adam.m
+
 推荐使用ADAM优化器对GAN网络进行更新
 
 结果示例：
@@ -27,6 +31,7 @@
 </p>
 
 * gan_sgd.m
+
 使用SGD算法对GAN网络进行迭代更新
 
 结果示例：
