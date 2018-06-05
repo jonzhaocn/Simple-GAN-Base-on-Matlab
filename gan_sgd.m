@@ -14,7 +14,6 @@ epoch = 100;
 images_num = 60000;
 batch_num = ceil(images_num / batch_size);
 learning_rate = 0.01;
-lamda = 0.001;
 for e=1:epoch
     kk = randperm(images_num);
     for t=1:batch_num
@@ -29,7 +28,7 @@ for e=1:epoch
         logits_fake = discriminator.layers{discriminator.layers_count}.z;
         discriminator = nnbp_d(discriminator, logits_fake, ones(batch_size, 1));
         generator = nnbp_g(generator, discriminator);
-        generator = nnapplygrade(generator, learning_rate, lamda);
+        generator = nnapplygrade(generator, learning_rate);
         % -----------更新discriminator，固定generator
         generator = nnff(generator, noise);
         images_fake = generator.layers{generator.layers_count}.a;
@@ -38,7 +37,7 @@ for e=1:epoch
         logits = discriminator.layers{discriminator.layers_count}.z;
         labels = [zeros(batch_size,1);ones(batch_size,1)];
         discriminator = nnbp_d(discriminator, logits, labels);
-        discriminator = nnapplygrade(discriminator, learning_rate, lamda);
+        discriminator = nnapplygrade(discriminator, learning_rate);
         % ----------------输出loss
         if t == batch_num
             c_loss = sigmoid_cross_entropy(logits(1:batch_size), ones(batch_size, 1));
@@ -154,12 +153,12 @@ function g_net = nnbp_g(g_net, d_net)
     end
 end
 % 应用梯度
-function nn = nnapplygrade(nn, learning_rate, lamda)
+function nn = nnapplygrade(nn, learning_rate)
     n = nn.layers_count;
     for i = 2:n
         dw = nn.layers{i}.dw;
         db = nn.layers{i}.db;
-        nn.layers{i}.w = nn.layers{i}.w - learning_rate * (dw + lamda * nn.layers{i}.w);
+        nn.layers{i}.w = nn.layers{i}.w - learning_rate * dw;
         nn.layers{i}.b = nn.layers{i}.b - learning_rate * db;
     end
 end
