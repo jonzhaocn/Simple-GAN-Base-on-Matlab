@@ -6,13 +6,19 @@
 ## 网络结构
 * generator 
 <p align="center">
-  <img src="https://github.com/JZhaoCH/Simple-GAN-Base-on-Matlab/blob/master/readme%20images/5.png"/>
+    <a href="/readme-images/generator.png">
+  		<img src="/readme-images/generator.png"/>
+    </a>
 </p>
+
 
 * generator + discriminator
 <p align="center">
-  <img src="https://github.com/JZhaoCH/Simple-GAN-Base-on-Matlab/blob/master/readme%20images/6.png"/>
+    <a href="/readme-images/generator-discriminator.png">
+  		<img src="/readme-images/generator-discriminator.png"/>
+    </a>
 </p>
+
 
 ## 代码
 
@@ -23,12 +29,17 @@
 结果示例：
 
 <p align="center">
-  <img src="https://github.com/JZhaoCH/Simple-GAN-Base-on-Matlab/blob/master/readme%20images/1.png"/>
+    <a href="/readme-images/adam-result-1.png">
+  		<img src="/readme-images/adam-result-1.png"/>
+    </a>
 </p>
 
 <p align="center">
-  <img src="https://github.com/JZhaoCH/Simple-GAN-Base-on-Matlab/blob/master/readme%20images/2.png"/>
+    <a href="/readme-images/adam-result-2.png">
+  		<img src="/readme-images/adam-result-2.png"/>
+    </a>
 </p>
+
 
 * gan_sgd.m
 
@@ -37,9 +48,14 @@
 结果示例：
 
 <p align="center">
-  <img src="https://github.com/JZhaoCH/Simple-GAN-Base-on-Matlab/blob/master/readme%20images/3.png"/>
+    <a href="/readme-images/sgd-result-1.png">
+  		<img src="/readme-images/sgd-result-1.png"/>
+    </a>
 </p>
 
 <p align="center">
-  <img src="https://github.com/JZhaoCH/Simple-GAN-Base-on-Matlab/blob/master/readme%20images/4.png"/>
+    <a href="/readme-images/sgd-result-2.png">
+  		<img src="/readme-images/sgd-result-2.png"/>
+    </a>
 </p>
+
