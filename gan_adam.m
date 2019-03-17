@@ -14,6 +14,10 @@ epoch = 100;
 images_num = 60000;
 batch_num = ceil(images_num / batch_size);
 learning_rate = 0.001;
+%-------创建图片保存文件夹
+if ~exist('pics','dir')==0
+    mkdir('pics/')
+end
 for e=1:epoch
     kk = randperm(images_num);
     for t=1:batch_num
